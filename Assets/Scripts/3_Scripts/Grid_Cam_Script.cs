@@ -33,6 +33,7 @@ public class Grid_Cam_Script : MonoBehaviour
         spawner = GameObject.Find("GameHandler").GetComponent<Grid_target_spawner>();
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 0;
+        isPlayable = false;
 
     }
 

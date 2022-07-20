@@ -15,6 +15,7 @@ public class Menu_Script : MonoBehaviour
     public TMP_Text accuracy;
     public TMP_Text avgAccTime;
     Timer_Script timer;
+    Gun_Script gun;
     public TMP_Text clickToStart;
     public GameObject aimCursor;
     bool isPlayable;
@@ -26,6 +27,7 @@ public class Menu_Script : MonoBehaviour
         Time.timeScale = 0f;
         GameObject.Find("GameHandler").GetComponent<Timer_Script>().on_Time_finished += onTimeFinished;
         timer = GameObject.Find("GameHandler").GetComponent<Timer_Script>();
+        gun = GameObject.Find("Gun").GetComponent<Gun_Script>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class Menu_Script : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (mainMenuUI.activeSelf == false && gameEndMenuUI.activeSelf == false && optionMenuUI == false)
+            if (mainMenuUI.activeSelf == false && gameEndMenuUI.activeSelf == false && optionMenuUI.activeSelf == false)
             {
                 if (gameIsPaused)
                 {
@@ -48,6 +50,11 @@ public class Menu_Script : MonoBehaviour
                 {
                     pause();
                 }
+            }
+            if (optionMenuUI.activeSelf == true)
+            {
+                optionMenuUI.SetActive(false);
+                pauseMenuUI.SetActive(true);
             }
 
         }
@@ -126,6 +133,8 @@ public class Menu_Script : MonoBehaviour
         gameIsPlayable = true;
         aimCursor.SetActive(true);
         gameIsPaused = false;
+        gun.score = 0;
+        gun.text_Score.text = gun.score.ToString();
     }
 
     void setAccuracy()

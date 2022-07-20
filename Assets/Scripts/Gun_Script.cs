@@ -21,7 +21,7 @@ public class Gun_Script : MonoBehaviour
     public float recoilValue=20f;
     private AudioSource gunSound;
     public TMP_Text text_Score;
-    int score;
+    public  int score;
     public event EventHandler on_TargetHit;
     bool timeRemaining;
     public static float totalBulletShoot;
